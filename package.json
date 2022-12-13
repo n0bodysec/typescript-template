@@ -1,0 +1,26 @@
+{
+	"name": "@n0bodysec/typescript-template",
+	"version": "1.0.0",
+	"description": "A TypeScript project template",
+	"private": true,
+	"main": "dist/index.js",
+	"homepage": "https://github.com/n0bodysec/ºtypescript-template#readme",
+	"repository": "https://github.com/n0bodysec/ºtypescript-template.git",
+	"bugs": "https://github.com/n0bodysec/ºtypescript-template/issues",
+	"author": "Nobody <admin@n0bodysec.com> (https://n0bodysec.com)",
+	"license": "GPL-3.0",
+	"packageManager": "yarn@3.3.0",
+	"scripts": {
+		"dev": "ts-node src"
+	},
+	"devDependencies": {
+		"@n0bodysec/eslint-config": "^2.1.0",
+		"@types/node": "^18.11.15",
+		"@typescript-eslint/eslint-plugin": "^5.46.1",
+		"@typescript-eslint/parser": "^5.46.1",
+		"eslint": "^8.29.0",
+		"eslint-plugin-import": "^2.26.0",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.9.4"
+	}
+}
