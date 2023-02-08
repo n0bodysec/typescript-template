@@ -9,7 +9,7 @@
 	"bugs": "https://github.com/n0bodysec/typescript-template/issues",
 	"author": "Nobody <admin@n0bodysec.com> (https://n0bodysec.com)",
 	"license": "GPL-3.0",
-	"packageManager": "yarn@3.3.0",
+	"packageManager": "yarn@3.4.1",
 	"scripts": {
 		"dev": "ts-node src/index.ts"
 	},
