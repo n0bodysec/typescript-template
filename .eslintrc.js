@@ -7,4 +7,5 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'plugin:import/typescript',
 	],
+	ignorePatterns: ['node_modules', 'dist'],
 };
