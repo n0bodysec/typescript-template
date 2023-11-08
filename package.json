@@ -10,16 +10,17 @@
 	"author": "Nobody <admin@n0bodysec.com> (https://n0bodysec.com)",
 	"license": "MIT",
 	"scripts": {
-		"dev": "ts-node src/index.ts"
+		"dev": "tsx src/index.ts"
 	},
 	"devDependencies": {
 		"@n0bodysec/eslint-config": "^2.1.1",
-		"@types/node": "^20.3.3",
-		"@typescript-eslint/eslint-plugin": "^5.61.0",
-		"@typescript-eslint/parser": "^5.61.0",
-		"eslint": "^8.44.0",
+		"@types/node": "^20.9.0",
+		"@typescript-eslint/eslint-plugin": "^6.10.0",
+		"@typescript-eslint/parser": "^6.10.0",
+		"eslint": "^8.53.0",
 		"eslint-plugin-import": "^2.27.5",
 		"ts-node": "^10.9.1",
+		"tsx": "^3.14.0",
 		"typescript": "^5.1.6"
 	}
 }
