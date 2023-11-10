@@ -10,5 +10,8 @@ node_modules/
 !.yarn/sdks
 !.yarn/versions
 
+# pnpm
+.pnpm-store
+
 # compiled files
 dist/
