@@ -1,1 +1,1 @@
-// Main file
+console.log('Hello, World!');
