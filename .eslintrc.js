@@ -3,9 +3,14 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	extends: [
 		'@n0bodysec',
-		'plugin:@typescript-eslint/eslint-recommended',
-		'plugin:@typescript-eslint/recommended',
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended-type-checked',
 		'plugin:import/typescript',
 	],
+	parserOptions: {
+		project: true,
+		tsconfigRootDir: __dirname,
+	},
+	root: true,
 	ignorePatterns: ['node_modules', 'dist'],
 };
