@@ -12,7 +12,8 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsx src/index.ts",
-		"dev:tsn": "ts-node src/index.ts"
+		"dev:tsn": "ts-node src/index.ts",
+		"lint": "eslint ."
 	},
 	"devDependencies": {
 		"@n0bodysec/eslint-config": "^2.1.3",
