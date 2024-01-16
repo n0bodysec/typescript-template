@@ -1,8 +1,8 @@
 {
 	/* Editor */
 	"editor.codeActionsOnSave": {
-		"source.organizeImports": true,
-		"source.fixAll.eslint": true
+		"source.organizeImports": "explicit",
+		"source.fixAll.eslint": "explicit"
 	},
 	/* ESLint linebreak workaround for Windows */
 	"eslint.rules.customizations": [
