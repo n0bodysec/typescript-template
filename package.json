@@ -7,7 +7,7 @@
 	"homepage": "https://github.com/n0bodysec/typescript-template#readme",
 	"repository": "https://github.com/n0bodysec/typescript-template.git",
 	"bugs": "https://github.com/n0bodysec/typescript-template/issues",
-	"author": "Nobody <admin@n0bodysec.com> (https://n0bodysec.com)",
+	"author": "Nobody <n0bodysec0@proton.me>",
 	"license": "MIT",
 	"scripts": {
 		"build": "tsc",
@@ -17,13 +17,13 @@
 	},
 	"devDependencies": {
 		"@n0bodysec/eslint-config": "^2.1.3",
-		"@types/node": "^20.11.17",
-		"@typescript-eslint/eslint-plugin": "^7.0.1",
-		"@typescript-eslint/parser": "^7.0.1",
-		"eslint": "^8.56.0",
+		"@types/node": "^20.12.7",
+		"@typescript-eslint/eslint-plugin": "^7.6.0",
+		"@typescript-eslint/parser": "^7.6.0",
+		"eslint": "^8.57.0",
 		"eslint-plugin-import": "^2.29.1",
 		"ts-node": "^10.9.2",
-		"tsx": "^4.7.1",
-		"typescript": "^5.3.3"
+		"tsx": "^4.7.2",
+		"typescript": "^5.4.4"
 	}
 }
