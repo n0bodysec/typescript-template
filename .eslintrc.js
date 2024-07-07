@@ -1,18 +1,26 @@
+/* eslint-disable @typescript-eslint/indent */
+
 module.exports = {
-	root: true,
-	env: { node: true },
-	parser: '@typescript-eslint/parser',
-	plugins: ['@typescript-eslint/eslint-plugin'],
+	ignorePatterns: ['node_modules', 'dist'],
+
+	// base extends
+	extends: [
+		'airbnb-base',
+		'airbnb-typescript/base',
+		'@n0bodysec',
+		'plugin:@typescript-eslint/recommended-type-checked',
+		'plugin:@typescript-eslint/stylistic-type-checked',
+	],
+
+	// parser options
 	parserOptions: {
 		project: 'tsconfig.json',
 		tsconfigRootDir: __dirname,
 		sourceType: 'module',
 	},
-	ignorePatterns: ['node_modules', 'dist'],
-	extends: [
-		'@n0bodysec',
-		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended-type-checked',
-		'plugin:import/typescript',
-	],
+
+	// rules
+	rules: {
+		'max-len': 'off',
+	},
 };
