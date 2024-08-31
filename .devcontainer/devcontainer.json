@@ -30,7 +30,6 @@
 			"extensions": [
 				"dbaeumer.vscode-eslint",
 				"eamodio.gitlens",
-				"denoland.vscode-deno",
 				"ms-azuretools.vscode-docker"
 			]
 		}
