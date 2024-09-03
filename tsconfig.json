@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "include": ["src", ".eslintrc.js"],
+  "include": ["src", "eslint.config.mjs"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
