@@ -8,18 +8,15 @@ importers:
 
   .:
     devDependencies:
-      '@n0bodysec/eslint-config':
-        specifier: ^2.3.1
-        version: 2.3.1(@typescript-eslint/eslint-plugin@8.7.0(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.11.1))(eslint@9.11.1)(typescript@5.6.2)
+      '@n0bodysec/eslint-config-x':
+        specifier: github:n0bodysec/eslint-config-x
+        version: https://codeload.github.com/n0bodysec/eslint-config-x/tar.gz/0f1be912d32b231298fb1816be3eba7d7de6eee3(@stylistic/eslint-plugin@2.8.0(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/eslint-plugin@8.7.0(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-config-airbnb-base@15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.11.1))(eslint@9.11.1))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import@2.29.1)(eslint@9.11.1))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)
       '@types/node':
         specifier: ^22.7.0
         version: 22.7.0
       eslint:
         specifier: ^9.11.1
         version: 9.11.1
-      eslint-config-airbnb-typescript-x:
-        specifier: github:claabs/eslint-config-airbnb-typescript-x
-        version: https://codeload.github.com/claabs/eslint-config-airbnb-typescript-x/tar.gz/1b742cf83bb0915b75c5b71a4969f4996d3e9611(@stylistic/eslint-plugin@2.8.0(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/eslint-plugin@8.7.0(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-config-airbnb-base@15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.11.1))(eslint@9.11.1))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)
       eslint-import-resolver-typescript:
         specifier: ^3.6.3
         version: 3.6.3(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import@2.29.1)(eslint@9.11.1)
@@ -238,8 +235,24 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@n0bodysec/eslint-config@2.3.1':
-    resolution: {integrity: sha512-52clTIEVj8FAjcToaVDNiTTC/4PnzM1I9qMJ3WWXc6CIILM134bJuJMONXu76NVZhOJf1xQ9LWU1Ysn2x5Qq1A==}
+  '@n0bodysec/eslint-config-x@https://codeload.github.com/n0bodysec/eslint-config-x/tar.gz/0f1be912d32b231298fb1816be3eba7d7de6eee3':
+    resolution: {tarball: https://codeload.github.com/n0bodysec/eslint-config-x/tar.gz/0f1be912d32b231298fb1816be3eba7d7de6eee3}
+    version: 1.0.0
+    engines: {node: '>=18.18.0'}
+    peerDependencies:
+      '@stylistic/eslint-plugin': ^2.0.0
+      '@typescript-eslint/eslint-plugin': ^7.5.0 || ^8.0.0
+      '@typescript-eslint/parser': ^7.5.0 || ^8.0.0
+      eslint: ^8.57.0 || ^9.0.0
+      eslint-config-airbnb: ^19.0.4
+      eslint-config-airbnb-base: ^15.0.0
+      eslint-import-resolver-typescript: ^3.6.3
+      eslint-plugin-import-x: ^4.1.0
+    peerDependenciesMeta:
+      eslint-config-airbnb:
+        optional: true
+      eslint-import-resolver-typescript:
+        optional: true
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -275,11 +288,8 @@ packages:
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
-  '@types/eslint@8.56.12':
-    resolution: {integrity: sha512-03ruubjWyOHlmljCVoxSuNDdmfZDzsrrz0P2LeJsOXr+ZwFQ+0yQIwNCwt/GYhV7Z31fgtXJTAEs+FYlEL851g==}
-
-  '@types/estree@1.0.5':
-    resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+  '@types/eslint@9.6.1':
+    resolution: {integrity: sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag==}
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
@@ -552,22 +562,6 @@ packages:
     peerDependencies:
       eslint: ^7.32.0 || ^8.2.0
       eslint-plugin-import: ^2.25.2
-
-  eslint-config-airbnb-typescript-x@https://codeload.github.com/claabs/eslint-config-airbnb-typescript-x/tar.gz/1b742cf83bb0915b75c5b71a4969f4996d3e9611:
-    resolution: {tarball: https://codeload.github.com/claabs/eslint-config-airbnb-typescript-x/tar.gz/1b742cf83bb0915b75c5b71a4969f4996d3e9611}
-    version: 0.0.0-development
-    engines: {node: '>=18.18.0'}
-    peerDependencies:
-      '@stylistic/eslint-plugin': ^2.0.0
-      '@typescript-eslint/eslint-plugin': ^7.5.0 || ^8.0.0
-      '@typescript-eslint/parser': ^7.5.0 || ^8.0.0
-      eslint: ^8.57.0 || ^9.0.0
-      eslint-config-airbnb: ^19.0.4
-      eslint-config-airbnb-base: ^15.0.0
-      eslint-plugin-import-x: ^4.1.0
-    peerDependenciesMeta:
-      eslint-config-airbnb:
-        optional: true
 
   eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
@@ -1352,20 +1346,20 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@n0bodysec/eslint-config@2.3.1(@typescript-eslint/eslint-plugin@8.7.0(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.11.1))(eslint@9.11.1)(typescript@5.6.2)':
+  '@n0bodysec/eslint-config-x@https://codeload.github.com/n0bodysec/eslint-config-x/tar.gz/0f1be912d32b231298fb1816be3eba7d7de6eee3(@stylistic/eslint-plugin@2.8.0(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/eslint-plugin@8.7.0(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-config-airbnb-base@15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.11.1))(eslint@9.11.1))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import@2.29.1)(eslint@9.11.1))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)':
     dependencies:
+      '@eslint/eslintrc': 3.1.0
       '@stylistic/eslint-plugin': 2.8.0(eslint@9.11.1)(typescript@5.6.2)
+      '@types/eslint': 9.6.1
+      '@typescript-eslint/eslint-plugin': 8.7.0(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2)
+      '@typescript-eslint/parser': 8.7.0(eslint@9.11.1)(typescript@5.6.2)
+      eslint: 9.11.1
       eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.11.1))(eslint@9.11.1)
-      eslint-config-airbnb-typescript-x: https://codeload.github.com/claabs/eslint-config-airbnb-typescript-x/tar.gz/1b742cf83bb0915b75c5b71a4969f4996d3e9611(@stylistic/eslint-plugin@2.8.0(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/eslint-plugin@8.7.0(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-config-airbnb-base@15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.11.1))(eslint@9.11.1))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)
+      eslint-plugin-import-x: 4.1.1(eslint@9.11.1)(typescript@5.6.2)
+    optionalDependencies:
+      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint-plugin-import@2.29.1)(eslint@9.11.1)
     transitivePeerDependencies:
-      - '@typescript-eslint/eslint-plugin'
-      - '@typescript-eslint/parser'
-      - eslint
-      - eslint-config-airbnb
-      - eslint-plugin-import
-      - eslint-plugin-import-x
       - supports-color
-      - typescript
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -1401,12 +1395,10 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@types/eslint@8.56.12':
+  '@types/eslint@9.6.1':
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       '@types/json-schema': 7.0.15
-
-  '@types/estree@1.0.5': {}
 
   '@types/estree@1.0.6': {}
 
@@ -1793,19 +1785,6 @@ snapshots:
       object.assign: 4.1.5
       object.entries: 1.1.8
       semver: 6.3.1
-
-  eslint-config-airbnb-typescript-x@https://codeload.github.com/claabs/eslint-config-airbnb-typescript-x/tar.gz/1b742cf83bb0915b75c5b71a4969f4996d3e9611(@stylistic/eslint-plugin@2.8.0(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/eslint-plugin@8.7.0(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-config-airbnb-base@15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.11.1))(eslint@9.11.1))(eslint-plugin-import-x@4.1.1(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1):
-    dependencies:
-      '@eslint/eslintrc': 3.1.0
-      '@stylistic/eslint-plugin': 2.8.0(eslint@9.11.1)(typescript@5.6.2)
-      '@types/eslint': 8.56.12
-      '@typescript-eslint/eslint-plugin': 8.7.0(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2)
-      '@typescript-eslint/parser': 8.7.0(eslint@9.11.1)(typescript@5.6.2)
-      eslint: 9.11.1
-      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.7.0(eslint@9.11.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.11.1))(eslint@9.11.1)
-      eslint-plugin-import-x: 4.1.1(eslint@9.11.1)(typescript@5.6.2)
-    transitivePeerDependencies:
-      - supports-color
 
   eslint-import-resolver-node@0.3.9:
     dependencies:

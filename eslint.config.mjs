@@ -1,10 +1,8 @@
-import n0bodysec from '@n0bodysec/eslint-config';
-import airbnbTs from 'eslint-config-airbnb-typescript-x/base';
+import configX from '@n0bodysec/eslint-config-x/base';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-	...airbnbTs,
-	...n0bodysec,
+	...configX,
 	...tseslint.configs.recommendedTypeChecked,
 	...tseslint.configs.stylisticTypeChecked,
 	{
@@ -14,10 +12,6 @@ export default tseslint.config(
 				projectService: true,
 				tsconfigRootDir: import.meta.dirname,
 			},
-		},
-
-		rules: {
-			'max-len': 'off',
 		},
 	},
 );
