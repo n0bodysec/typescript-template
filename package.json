@@ -14,7 +14,7 @@
 		"dev": "tsx src/main.ts",
 		"dev:tsn": "ts-node src/main.ts",
 		"watch": "nodemon",
-		"lint": "eslint ."
+		"lint": "eslint src/"
 	},
 	"devDependencies": {
 		"@n0bodysec/eslint-config-x": "github:n0bodysec/eslint-config-x",
