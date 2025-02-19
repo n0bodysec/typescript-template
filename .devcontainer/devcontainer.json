@@ -6,10 +6,6 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/typescript-node",
 
-	// Workspace
-	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-	"workspaceFolder": "/workspace",
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		// "ghcr.io/devcontainers/features/docker-in-docker:2": {},
@@ -22,7 +18,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "git config --global --add safe.directory /workspace",
+	// "postCreateCommand": "pnpm install",
 
 	// Configure tool-specific properties.
 	"customizations": {
