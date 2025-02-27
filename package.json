@@ -18,16 +18,16 @@
 	},
 	"devDependencies": {
 		"@n0bodysec/eslint-config-x": "github:n0bodysec/eslint-config-x",
-		"@types/node": "^22.13.4",
-		"eslint": "^9.20.1",
+		"@types/node": "^22.13.5",
+		"eslint": "^9.21.0",
 		"eslint-config-airbnb-base": "^15.0.0",
-		"eslint-import-resolver-typescript": "^3.8.1",
+		"eslint-import-resolver-typescript": "^3.8.3",
 		"eslint-plugin-import": "^2.31.0",
 		"nodemon": "^3.1.9",
 		"ts-node": "^10.9.2",
-		"tsx": "^4.19.2",
+		"tsx": "^4.19.3",
 		"typescript": "^5.7.3",
-		"typescript-eslint": "^8.24.1"
+		"typescript-eslint": "^8.25.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
