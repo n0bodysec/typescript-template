@@ -9,7 +9,10 @@ export default tseslint.config(
 		ignores: ['node_modules', 'dist'],
 		languageOptions: {
 			parserOptions: {
-				projectService: true,
+				projectService: {
+					// add other config files below (e.g.: tsup.config.ts)
+					allowDefaultProject: ['eslint.config.mjs'],
+				},
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
