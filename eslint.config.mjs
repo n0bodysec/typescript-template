@@ -1,4 +1,4 @@
-import configX from '@n0bodysec/eslint-config-x/base';
+import configX from '@snowyyd/eslint-config/base';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
