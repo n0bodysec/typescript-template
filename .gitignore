@@ -1,13 +1,9 @@
 # node modules
 node_modules/
-
-# pnpm
 .pnpm-store/
 
-# compiled files
+# temporal files
 dist/
-
-# TypeScript cache
 *.tsbuildinfo
 
 # npm pack
