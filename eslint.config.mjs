@@ -1,12 +1,13 @@
 import configX from '@snowyyd/eslint-config/base';
 import tseslint from 'typescript-eslint';
+import tsconfig from './tsconfig.json';
 
 export default tseslint.config(
 	...configX,
 	...tseslint.configs.recommendedTypeChecked,
 	...tseslint.configs.stylisticTypeChecked,
 	{
-		ignores: ['node_modules', 'dist'],
+		ignores: tsconfig.exclude,
 		languageOptions: {
 			parserOptions: {
 				projectService: {
