@@ -24,15 +24,15 @@
 	},
 	"devDependencies": {
 		"@snowyyd/eslint-config": "^1.1.0",
-		"@types/node": "^22.15.3",
-		"eslint": "^9.26.0",
+		"@types/node": "^22.15.30",
+		"eslint": "^9.28.0",
 		"eslint-config-airbnb-base": "^15.0.0",
-		"eslint-import-resolver-typescript": "^4.3.4",
+		"eslint-import-resolver-typescript": "^4.4.3",
 		"eslint-plugin-import": "^2.31.0",
 		"nodemon": "^3.1.10",
 		"ts-node": "^10.9.2",
 		"tsx": "^4.19.4",
 		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.31.1"
+		"typescript-eslint": "^8.33.1"
 	}
 }
