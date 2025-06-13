@@ -1,1 +1,3 @@
-console.log('Hello, World!');
+import { getName } from './example.ts';
+
+console.log(`Hello, ${getName()}!`);

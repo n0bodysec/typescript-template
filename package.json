@@ -4,18 +4,28 @@
 	"version": "1.0.0",
 	"private": true,
 	"type": "module",
-	"main": "dist/main.js",
 	"homepage": "https://github.com/snowyyd/typescript-template#readme",
 	"repository": "https://github.com/snowyyd/typescript-template.git",
 	"bugs": "https://github.com/snowyyd/typescript-template/issues",
 	"author": "snowyyd <snowyyd@proton.me>",
 	"license": "MIT",
+	"publishConfig": {
+		"directory": "dist"
+	},
 	"scripts": {
 		"lint": "eslint src/",
-		"build": "tsc",
+		"type:check": "tsc",
 		"dev": "ts-node src/main.ts",
 		"dev:tsx": "tsx src/main.ts",
-		"watch": "nodemon"
+		"watch": "nodemon",
+		"build": "[ -z \"$BUILD_TYPE\" ] && echo 'Error: BUILD_TYPE is not defined' && exit 1 || pnpm build:$BUILD_TYPE",
+		"build:single": "tsc -p tsconfigs/tsconfig.build.json",
+		"build:multi": "tsc -b tsconfigs/tsconfig.esm.json tsconfigs/tsconfig.cjs.json tsconfigs/tsconfig.types.json",
+		"prebuild:single": "rm -rf dist/",
+		"prebuild:multi": "pnpm prebuild:single",
+		"postbuild:single": "tsx scripts/postbuild.ts",
+		"postbuild:multi": "tsx scripts/postbuild.ts",
+		"prepack": "pnpm build"
 	},
 	"devDependencies": {
 		"@snowyyd/eslint-config": "^1.2.1",
