@@ -7,18 +7,13 @@
 	"image": "mcr.microsoft.com/devcontainers/typescript-node",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	"features": {
-		// "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
-			"command": "npm install -g npm@latest pnpm@latest"
-		}
-	},
+	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pnpm install",
+	"postCreateCommand": "bash -i -c 'nvm install --default node && nvm reinstall-packages system && npm up -g -f'",
 
 	// Configure tool-specific properties.
 	"customizations": {
