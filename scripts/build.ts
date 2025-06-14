@@ -1,98 +1,87 @@
 import { execSync } from 'node:child_process';
-import { existsSync, rmdirSync } from 'node:fs';
-import { writeFile } from 'node:fs/promises';
+import { rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import pkgJson from '../package.json' with { type: 'json' };
 
-type BuildType = typeof validBuildTypes[number];
-const validBuildTypes = ['single', 'multi'] as const;
-const distFolder = join(import.meta.dirname, '..', 'dist');
-const cfgFolder = join(import.meta.dirname, '..', 'tsconfigs');
+const t0 = performance.now();
+const projectDir = join(import.meta.dirname, '..'); // the project root (where the main 'package.json' is located)
+const distDir = join(projectDir, 'dist'); // the working dir (see publishConfig.directory)
+const cfgDir = join(projectDir, 'tsconfigs'); // the path where tsconfig files are located
 
-function isValidBuildType(value: unknown): value is BuildType
+type PackageType = typeof buildNames[number] | 'root';
+async function createPackageJson(packageType: PackageType, isMultiBuild: boolean)
 {
-	return validBuildTypes.includes(value as BuildType);
-}
+	if (!isMultiBuild && packageType !== 'root') throw new Error('The package type MUST be "root" for "single" builds.');
 
-async function createPackageJson(packageType: 'root' | 'cjs' | 'esm' | 'types', buildType: BuildType)
-{
-	// special case
+	const libDirName = 'lib'; // the outDir inside the 'distDir' (see tsconfig.*.json)
+
+	// default out file and data for multi builds
+	let outFile = join(distDir, libDirName, packageType, 'package.json');
+	let outData = `{"type":"${packageType === 'esm' ? 'module' : 'commonjs'}"}`;
+
+	// the root package.json
 	if (packageType === 'root')
 	{
-		const outFile = join(distFolder, 'package.json');
+		// this generate the paths used in the 'exports' key in package.json
+		const gen = (t: PackageType, sub = true) =>
+		{
+			let base = './' + libDirName; // base path for transpiled code (relative to package.json)
+			if (sub) base += '/' + t; // add sub path for multi builds
+			base += 'main'; // entrypoint file name (no extension)
+			base += t === 'types' ? '.d.ts' : '.js'; // file extension based on package type
+			return base;
+		};
 
-		const exportsData = buildType === 'multi'
+		// https://nodejs.org/api/packages.html#conditional-exports
+		// https://nodejs.org/api/packages.html#exports-sugar
+		const exports = isMultiBuild
 			? {
-				types: './lib/types/main.d.ts',
-				require: './lib/cjs/main.js',
-				import: './lib/esm/main.js',
-				default: './lib/esm/main.js',
+				// types should be the first key
+				// see https://nodejs.org/api/packages.html#community-conditions-definitions
+				types: gen('types'),
+				require: gen('cjs'),
+				import: gen('esm'),
+				default: gen('esm'),
 			}
 			: {
-				types: './lib/main.d.ts',
-				default: './lib/main.js',
+				types: gen('types', false),
+				default: gen('esm', false),
 			};
 
-		return writeFile(outFile, JSON.stringify({
-			...pkgJson,
-			exports: {
-				'.': exportsData,
-			},
-		}, null, 4), 'utf8');
+		outFile = join(distDir, 'package.json');
+		outData = JSON.stringify({ ...pkgJson, exports }, null, 4);
 	}
 
-	// all other cases
-	if (buildType === 'multi')
-	{
-		const outFile = join(distFolder, 'lib', packageType, 'package.json');
-		const isModule = packageType === 'esm';
-
-		return writeFile(outFile, JSON.stringify({
-			type: isModule ? 'module' : 'commonjs',
-		}), 'utf8');
-	}
-
-	return Promise.resolve();
+	return writeFile(outFile, outData);
 }
 
-const args = process.argv.slice(2);
-const buildType = args[0] ?? process.env.BUILD_TYPE;
+// build type can be parsed from the first cli arg or from an env var
+const buildType = process.argv.slice(2)[0] ?? process.env.BUILD_TYPE;
+if (!buildType || !['single', 'multi'].includes(buildType)) throw new Error('Invalid build type provided');
+const isMultiBuild = buildType === 'multi';
 
-if (!isValidBuildType(buildType)) throw new Error('Invalid build type provided');
+// build names (used in multi builds)
+const buildNames = ['cjs', 'esm', 'types'] as const;
 
-// prebuild
-if (existsSync(distFolder))
+// prebuild - delete the old distDir
+await rm(distDir, { recursive: true, force: true });
+
+// build - run the typescript compiler
+if (isMultiBuild)
 {
-	rmdirSync(distFolder, {
-		recursive: true,
-	});
+	// config files in format `tsconfig.{buildName}.json`
+	const cfgFiles = buildNames.map((x) => join(cfgDir, `tsconfig.${x}.json`));
+	execSync(`pnpm tsc -b ${cfgFiles.join(' ')}`, { stdio: 'inherit' });
 }
+else execSync(`pnpm tsc -p ${join(cfgDir, 'tsconfig.build.json')}`, { stdio: 'inherit' });
 
-// build
-switch (buildType)
-{
-	case 'single': {
-		execSync(`pnpm tsc -p ${join(cfgFolder, 'tsconfig.build.json')}`, { stdio: 'inherit' });
-		break;
-	}
-
-	case 'multi': {
-		const cfgFiles = ['tsconfig.cjs.json', 'tsconfig.esm.json', 'tsconfig.types.json']
-			.map((f) => join(cfgFolder, f));
-		execSync(`pnpm tsc -b ${cfgFiles.join(' ')}`, { stdio: 'inherit' });
-		break;
-	}
-
-	// no default
-}
-
-// postbuild
+// postbuild - create all the required package.json and .npmignore
 await Promise.all([
-	createPackageJson('cjs', buildType),
-	createPackageJson('esm', buildType),
-	createPackageJson('types', buildType),
-	createPackageJson('root', buildType),
+	createPackageJson('root', isMultiBuild),
+	isMultiBuild ? buildNames.map((x) => createPackageJson(x, isMultiBuild)) : [],
 
 	// exclude .tsbuildinfo files from the final package
-	writeFile(join(distFolder, '.npmignore'), '*.tsbuildinfo', 'utf8'),
+	writeFile(join(distDir, '.npmignore'), '*.tsbuildinfo'),
 ]);
+
+console.log(`Build completed. Build script for "${buildType}" took ${performance.now() - t0}ms.`);
