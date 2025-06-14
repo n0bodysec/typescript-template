@@ -13,7 +13,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "bash -i -c 'nvm install --default node && nvm reinstall-packages system && npm up -g -f'",
+	"postCreateCommand":"bash -i ./.devcontainer/postCreateCommand.sh",
 
 	// Configure tool-specific properties.
 	"customizations": {
