@@ -1,11 +1,18 @@
+import { execSync } from 'node:child_process';
+import { existsSync, rmdirSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import pkgJson from '../package.json' with { type: 'json' };
 
 type BuildType = typeof validBuildTypes[number];
-
 const validBuildTypes = ['single', 'multi'] as const;
 const distFolder = join(import.meta.dirname, '..', 'dist');
+const cfgFolder = join(import.meta.dirname, '..', 'tsconfigs');
+
+function isValidBuildType(value: unknown): value is BuildType
+{
+	return validBuildTypes.includes(value as BuildType);
+}
 
 async function createPackageJson(packageType: 'root' | 'cjs' | 'esm' | 'types', buildType: BuildType)
 {
@@ -48,17 +55,38 @@ async function createPackageJson(packageType: 'root' | 'cjs' | 'esm' | 'types', 
 	return Promise.resolve();
 }
 
-function isValidBuildType(value: unknown): value is BuildType
-{
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-	return validBuildTypes.includes(value as any);
-}
-
 const args = process.argv.slice(2);
 const buildType = args[0] ?? process.env.BUILD_TYPE;
 
 if (!isValidBuildType(buildType)) throw new Error('Invalid build type provided');
 
+// prebuild
+if (existsSync(distFolder))
+{
+	rmdirSync(distFolder, {
+		recursive: true,
+	});
+}
+
+// build
+switch (buildType)
+{
+	case 'single': {
+		execSync(`pnpm tsc -p ${join(cfgFolder, 'tsconfig.build.json')}`, { stdio: 'inherit' });
+		break;
+	}
+
+	case 'multi': {
+		const cfgFiles = ['tsconfig.cjs.json', 'tsconfig.esm.json', 'tsconfig.types.json']
+			.map((f) => join(cfgFolder, f));
+		execSync(`pnpm tsc -b ${cfgFiles.join(' ')}`, { stdio: 'inherit' });
+		break;
+	}
+
+	// no default
+}
+
+// postbuild
 await Promise.all([
 	createPackageJson('cjs', buildType),
 	createPackageJson('esm', buildType),

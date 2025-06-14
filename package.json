@@ -18,13 +18,7 @@
 		"dev": "ts-node src/main.ts",
 		"dev:tsx": "tsx src/main.ts",
 		"watch": "nodemon",
-		"build": "[ -z \"$BUILD_TYPE\" ] && echo 'Error: BUILD_TYPE is not defined' && exit 1 || pnpm build:$BUILD_TYPE",
-		"build:single": "tsc -p tsconfigs/tsconfig.build.json",
-		"build:multi": "tsc -b tsconfigs/tsconfig.esm.json tsconfigs/tsconfig.cjs.json tsconfigs/tsconfig.types.json",
-		"prebuild:single": "rm -rf dist/",
-		"prebuild:multi": "pnpm prebuild:single",
-		"postbuild:single": "tsx scripts/postbuild.ts",
-		"postbuild:multi": "tsx scripts/postbuild.ts",
+		"build": "tsx scripts/build.ts",
 		"prepack": "pnpm build"
 	},
 	"devDependencies": {
